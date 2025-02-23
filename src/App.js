@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Newhomepage from './Newhomepage';
 import Prising from './Prising';
 import Onasnas from './Onasnas';
@@ -14,17 +14,16 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Newhomepage />} /> 
-        <Route path="cenik" element={<Prising />} />
-        <Route path="o-nas" element={<Onasnas />} />
-        <Route path="aktuality" element={<Novinky />} />
-        <Route path="kempy" element={<Kempytenis />} />
-        <Route path="skolicka" element={<Minitenis />} />
-        <Route path="kontakt" element={<Kontaktfile />} />
-        <Route path="doplnkove-sluzby" element={<Novesluzby />} />
-        <Route path="nase-kurzy" element={<Nasekurzy />} />
-        <Route path="rezervace-kurtu" element={<Rezervacekurtu />} />
-
+        <Route path="/" element={<Newhomepage />} />
+        <Route path="/cenik" element={<Prising />} />
+        <Route path="/o-nas" element={<Onasnas />} />
+        <Route path="/aktuality" element={<Novinky />} />
+        <Route path="/kempy" element={<Kempytenis />} />
+        <Route path="/skolicka" element={<Minitenis />} />
+        <Route path="/kontakt" element={<Kontaktfile />} />
+        <Route path="/doplnkove-sluzby" element={<Novesluzby />} />
+        <Route path="/nase-kurzy" element={<Nasekurzy />} />
+        <Route path="/rezervace-kurtu" element={<Rezervacekurtu />} />
       </Routes>
     </Router>
   );
