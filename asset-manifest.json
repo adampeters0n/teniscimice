@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/teniscimice/static/css/main.56e9c37f.css",
-    "main.js": "/teniscimice/static/js/main.634feb90.js",
+    "main.js": "/teniscimice/static/js/main.2871303b.js",
     "static/js/453.afcf93b5.chunk.js": "/teniscimice/static/js/453.afcf93b5.chunk.js",
     "index.html": "/teniscimice/index.html",
     "main.56e9c37f.css.map": "/teniscimice/static/css/main.56e9c37f.css.map",
-    "main.634feb90.js.map": "/teniscimice/static/js/main.634feb90.js.map",
+    "main.2871303b.js.map": "/teniscimice/static/js/main.2871303b.js.map",
     "453.afcf93b5.chunk.js.map": "/teniscimice/static/js/453.afcf93b5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.56e9c37f.css",
-    "static/js/main.634feb90.js"
+    "static/js/main.2871303b.js"
   ]
 }
