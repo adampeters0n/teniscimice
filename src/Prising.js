@@ -11,22 +11,33 @@ const Prising = () => {
   
   return (
     <div className="min-h-screen bg-amber-50">
-      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
+     <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
         <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/">
               <img
-                src="/logocimice.png"
+                // Logo z public složky
+                src={`${process.env.PUBLIC_URL}/logocimice.png`}
                 alt="Tenis Čimice Logo"
                 className="h-12 w-12 mr-2"
               />
             </Link>
-            {/* Social Media Icons */}
             <div className="ml-4 flex flex-col items-center">
-              <a href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-300">
+              {/* Externí odkazy mohou zůstat <a> */}
+              <a
+                href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-yellow-300"
+              >
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-300 mt-2">
+              <a
+                href="https://www.instagram.com/yourprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-yellow-300 mt-2"
+              >
                 <Instagram className="h-6 w-6" />
               </a>
             </div>
@@ -41,12 +52,13 @@ const Prising = () => {
               )}
             </button>
           </div>
-          <ul className={`hidden md:flex md:space-x-4`}>
-            {['Domů','O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+
+          {/* Menu pro větší obrazovky */}
+          <ul className="hidden md:flex md:space-x-4">
+            {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
               <li key={item} className="flex-shrink-0">
                 <Link
                   to={
-                    item === 'Domů' ? '/' :
                     item === 'O nás' ? '/o-nas' :
                     item === 'Aktuality' ? '/aktuality' :
                     item === 'Kempy' ? '/kempy' :
@@ -54,7 +66,7 @@ const Prising = () => {
                     item === 'Školička' ? '/skolicka' :
                     item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
                     item === 'Kontakt' ? '/kontakt' :
-                    '#'
+                    '/'
                   }
                   className="hover:text-yellow-300 transition duration-300 font-semibold"
                 >
@@ -64,14 +76,17 @@ const Prising = () => {
             ))}
           </ul>
 
-          {/* Mobile Menu */}
-          <div className={`md:hidden fixed top-16 right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} rounded-lg overflow-hidden`}>
+          {/* Menu pro mobily */}
+          <div
+            className={`md:hidden fixed top-16 right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
+              isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            } rounded-lg overflow-hidden`}
+          >
             <ul className="flex flex-col">
-              {['Domů','O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+              {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
                 <li key={item} className="border-b border-gray-300">
                   <Link
                     to={
-                      item === 'Domů' ? '/' : 
                       item === 'O nás' ? '/o-nas' :
                       item === 'Aktuality' ? '/aktuality' :
                       item === 'Kempy' ? '/kempy' :
@@ -79,10 +94,10 @@ const Prising = () => {
                       item === 'Školička' ? '/skolicka' :
                       item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
                       item === 'Kontakt' ? '/kontakt' :
-                      '#'
+                      '/'
                     }
                     className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                    onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item}
                   </Link>
@@ -90,7 +105,6 @@ const Prising = () => {
               ))}
             </ul>
           </div>
-
         </nav>
       </header>
 
