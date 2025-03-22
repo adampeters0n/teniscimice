@@ -34,17 +34,17 @@ const ImageCarousel = ({ images }) => {
       />
       <button
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-600 bg-opacity-50 hover:bg-opacity-75 transition text-white p-2 rounded-full"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-orange-600 bg-opacity-50 hover:bg-opacity-75 transition text-white p-2 rounded-full"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-600 bg-opacity-50 hover:bg-opacity-75 transition text-white p-2 rounded-full"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-600 bg-opacity-50 hover:bg-opacity-75 transition text-white p-2 rounded-full"
       >
         <ChevronRight size={24} />
       </button>
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <div
             key={index}
@@ -65,6 +65,7 @@ const Newhomepage = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Přidáme prefix process.env.PUBLIC_URL, aby se obrázky našly i na GH Pages
   const summerImages = [
     `${process.env.PUBLIC_URL}/kurt2.jpg`,
     `${process.env.PUBLIC_URL}/kurt1.jpg`,
@@ -81,105 +82,110 @@ const Newhomepage = () => {
 
   return (
     <div className="min-h-screen bg-amber-50">
-      {/* HEADER */}
-      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4">
-        {/* Menší fixní mezera: mx-8 */}
-        <div className="mx-8 flex justify-between items-center">
-          <div className="flex items-center">
-            <Link to="/">
-              <img
-                src={`${process.env.PUBLIC_URL}/logocimice.png`}
-                alt="Tenis Čimice Logo"
-                className="h-12 w-12 mr-2"
-              />
-            </Link>
-            <div className="ml-4 flex flex-col items-center">
-              <a
-                href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-yellow-300"
-              >
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/yourprofile"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-yellow-300 mt-2"
-              >
-                <Instagram className="h-6 w-6" />
-              </a>
+      
+      {/* Upravíme header tak, aby se obsah fixně vycentroval a neroztahoval */}
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50">
+        {/* Obalíme nav do kontejneru s max šířkou a centrováním */}
+        <div className="max-w-screen-xl mx-auto py-4 px-6">
+          <nav className="flex justify-between items-center">
+            <div className="flex items-center">
+              <Link to="/">
+                <img
+                  // Logo z public složky
+                  src={`${process.env.PUBLIC_URL}/logocimice.png`}
+                  alt="Tenis Čimice Logo"
+                  className="h-12 w-12 mr-2"
+                />
+              </Link>
+              <div className="ml-4 flex flex-col items-center">
+                {/* Externí odkazy mohou zůstat <a> */}
+                <a
+                  href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-yellow-300"
+                >
+                  <Facebook className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://www.instagram.com/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-yellow-300 mt-2"
+                >
+                  <Instagram className="h-6 w-6" />
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center md:hidden">
-            <button onClick={toggleMenu} aria-label="Toggle Menu">
-              {isMenuOpen ? (
-                <CloseIcon className="h-8 w-8" />
-              ) : (
-                <MenuIcon className="h-8 w-8" />
-              )}
-            </button>
-          </div>
+            <div className="flex items-center md:hidden">
+              <button onClick={toggleMenu} aria-label="Toggle Menu">
+                {isMenuOpen ? (
+                  <CloseIcon className="h-8 w-8" />
+                ) : (
+                  <MenuIcon className="h-8 w-8" />
+                )}
+              </button>
+            </div>
 
-          {/* Menu pro větší obrazovky */}
-          <ul className="hidden md:flex md:space-x-4">
-            {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-              <li key={item} className="flex-shrink-0">
-                <Link
-                  to={
-                    item === 'O nás' ? '/o-nas' :
-                    item === 'Aktuality' ? '/aktuality' :
-                    item === 'Kempy' ? '/kempy' :
-                    item === 'Ceník' ? '/cenik' :
-                    item === 'Školička' ? '/skolicka' :
-                    item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                    item === 'Kontakt' ? '/kontakt' :
-                    '/'
-                  }
-                  className="hover:text-yellow-300 transition duration-300 font-semibold"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+            {/* Menu pro větší obrazovky */}
+            <ul className="hidden md:flex md:space-x-4">
+              {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+                <li key={item} className="flex-shrink-0">
+                  <Link
+                    to={
+                      item === 'O nás' ? '/o-nas' :
+                      item === 'Aktuality' ? '/aktuality' :
+                      item === 'Kempy' ? '/kempy' :
+                      item === 'Ceník' ? '/cenik' :
+                      item === 'Školička' ? '/skolicka' :
+                      item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+                      item === 'Kontakt' ? '/kontakt' :
+                      '/'
+                    }
+                    className="hover:text-yellow-300 transition duration-300 font-semibold"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-        {/* Menu pro mobily */}
-        <div
-          className={`md:hidden fixed top-16 right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          } rounded-lg overflow-hidden`}
-        >
-          <ul className="flex flex-col">
-            {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-              <li key={item} className="border-b border-gray-300">
-                <Link
-                  to={
-                    item === 'O nás' ? '/o-nas' :
-                    item === 'Aktuality' ? '/aktuality' :
-                    item === 'Kempy' ? '/kempy' :
-                    item === 'Ceník' ? '/cenik' :
-                    item === 'Školička' ? '/skolicka' :
-                    item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                    item === 'Kontakt' ? '/kontakt' :
-                    '/'
-                  }
-                  className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
+            {/* Menu pro mobily */}
+            <div
+              className={`md:hidden fixed top-16 right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
+                isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+              } rounded-lg overflow-hidden`}
+            >
+              <ul className="flex flex-col">
+                {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+                  <li key={item} className="border-b border-gray-300">
+                    <Link
+                      to={
+                        item === 'O nás' ? '/o-nas' :
+                        item === 'Aktuality' ? '/aktuality' :
+                        item === 'Kempy' ? '/kempy' :
+                        item === 'Ceník' ? '/cenik' :
+                        item === 'Školička' ? '/skolicka' :
+                        item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+                        item === 'Kontakt' ? '/kontakt' :
+                        '/'
+                      }
+                      className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
         </div>
       </header>
 
-      {/* MAIN */}
-      <main className="pt-20 mx-8 mt-8 mb-16">
+      {/* Omezíme i hlavní část stránky na max šířku */}
+      <main className="pt-20 max-w-screen-xl mx-auto mt-8 mb-16 px-4 sm:px-6 lg:px-8">
         <section
           className="relative bg-cover bg-center h-[500px] text-white flex items-center justify-center mb-10"
           style={{
@@ -405,9 +411,9 @@ const Newhomepage = () => {
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="mx-8 flex flex-col md:flex-row justify-between">
+      {/* Omezíme i patičku na stejnou max šířku */}
+      <footer className="bg-gray-800 text-white">
+        <div className="max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between">
           <div className="mb-4 md:mb-0">
             <h3 className="text-2xl font-semibold mb-2">Tenis Čimice</h3>
             <p className="text-gray-400">
