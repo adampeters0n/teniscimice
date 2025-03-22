@@ -3,11 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    /* Pomáhá zamezit nechtěnému přetékání kvůli paddingu */
+    box-sizing: border-box;
+  }
   html,
   body {
     margin: 0;
     padding: 0;
+    /* Často stačí i jen overflow-x: hidden */
     max-width: 100vw;
     overflow-x: hidden;
+    /* Případně nastav i background, pokud nechceš vidět bílou barvu */
+    /* background: #FCE9BE; */
   }
 }
