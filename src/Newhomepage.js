@@ -80,11 +80,12 @@ const Newhomepage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-amber-50">
+    // 1) Přidáno w-full, odstraněno mx-auto nebo max-w-*.
+    <div className="min-h-screen w-full bg-amber-50">
       {/* HEADER */}
+      {/* 2) Žádné mx-8; necháme jen py-4 (můžete přidat px-4, pokud chcete odsazení) */}
       <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4">
-        {/* Menší fixní mezera: mx-8 */}
-        <div className="mx-8 flex justify-between items-center">
+        <div className="flex justify-between items-center px-4">
           <div className="flex items-center">
             <Link to="/">
               <img
@@ -179,7 +180,8 @@ const Newhomepage = () => {
       </header>
 
       {/* MAIN */}
-      <main className="pt-20 mx-8 mt-8 mb-16">
+      {/* 2) Odstraněno mx-8 => volitelné px-4 pro vnitřní odsazení textu */}
+      <main className="pt-20 mt-8 mb-16 px-4">
         <section
           className="relative bg-cover bg-center h-[500px] text-white flex items-center justify-center mb-10"
           style={{
@@ -282,7 +284,8 @@ const Newhomepage = () => {
 
         <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-green-700 hover:shadow-xl transition-all duration-300">
           <div className="grid lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-1 text-left flex flex-col justify-center max-w-md mx-auto lg:mx-0">
+            {/* ZDE: odstraněno mx-auto, necháme max-w-md, pokud chcete. */}
+            <div className="lg:col-span-1 text-left flex flex-col justify-center max-w-md">
               <h2 className="text-3xl font-extrabold tracking-wide text-green-700 mb-6">
                 Tenisový areál
               </h2>
@@ -328,7 +331,8 @@ const Newhomepage = () => {
 
         <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-blue-600 hover:shadow-xl transition-all duration-300 mt-10">
           <div className="grid lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-1 text-left flex flex-col justify-center max-w-md mx-auto lg:mx-0">
+            {/* ZDE: odstraněno mx-auto */}
+            <div className="lg:col-span-1 text-left flex flex-col justify-center max-w-md">
               <h2 className="text-3xl font-extrabold tracking-wide text-blue-700 mb-6">
                 Trenérský tým
               </h2>
@@ -406,8 +410,9 @@ const Newhomepage = () => {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="mx-8 flex flex-col md:flex-row justify-between">
+      {/* 2) Odstraněno mx-8 => jen py-8 a volitelně px-4 */}
+      <footer className="bg-gray-800 text-white py-8 px-4">
+        <div className="flex flex-col md:flex-row justify-between">
           <div className="mb-4 md:mb-0">
             <h3 className="text-2xl font-semibold mb-2">Tenis Čimice</h3>
             <p className="text-gray-400">
