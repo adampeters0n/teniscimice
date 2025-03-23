@@ -84,122 +84,121 @@ const Newhomepage = () => {
     <div className="min-h-screen bg-amber-50">
       
       {/* Upravíme header tak, aby se obsah fixně vycentroval a neroztahoval */}
-      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50">
-        {/* Obalíme nav do kontejneru s max šířkou a centrováním */}
-        <div className="max-w-screen-xl mx-auto py-4 px-6">
-          <nav className="flex justify-between items-center">
-            <div className="flex items-center">
-              <Link to="/">
-                <img
-                  // Logo z public složky
-                  src={`${process.env.PUBLIC_URL}/logocimice.png`}
-                  alt="Tenis Čimice Logo"
-                  className="h-12 w-12 mr-2"
-                />
-              </Link>
-              <div className="ml-4 flex flex-col items-center">
-                {/* Externí odkazy mohou zůstat <a> */}
-                <a
-                  href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-yellow-300"
-                >
-                  <Facebook className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://www.instagram.com/yourprofile"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-yellow-300 mt-2"
-                >
-                  <Instagram className="h-6 w-6" />
-                </a>
-              </div>
-            </div>
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-6 left-4 right-4 z-50 px-6 py-4 rounded-b-2xl rounded-t-2xl shadow-lg">
+  <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
+    <div className="flex items-center">
+      <Link to="/">
+        <img
+          // Logo z public složky
+          src={`${process.env.PUBLIC_URL}/logocimice.png`}
+          alt="Tenis Čimice Logo"
+          className="h-12 w-12 mr-2"
+        />
+      </Link>
+      {/* Odebrán text "Tenis Čimice", zachovány sociální ikony */}
+      <div className="ml-4 flex flex-col items-center">
+        <a
+          href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white hover:text-yellow-300"
+        >
+          <Facebook className="h-6 w-6" />
+        </a>
+        <a
+          href="https://www.instagram.com/yourprofile"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white hover:text-yellow-300 mt-2"
+        >
+          <Instagram className="h-6 w-6" />
+        </a>
+      </div>
+    </div>
 
-            <div className="flex items-center md:hidden">
-              <button onClick={toggleMenu} aria-label="Toggle Menu">
-                {isMenuOpen ? (
-                  <CloseIcon className="h-8 w-8" />
-                ) : (
-                  <MenuIcon className="h-8 w-8" />
-                )}
-              </button>
-            </div>
+    {/* Hamburger menu pro mobilní zobrazení */}
+    <div className="flex items-center md:hidden">
+      <button onClick={toggleMenu} aria-label="Toggle Menu">
+        {isMenuOpen ? (
+          <CloseIcon className="h-8 w-8" />
+        ) : (
+          <MenuIcon className="h-8 w-8" />
+        )}
+      </button>
+    </div>
 
-            {/* Menu pro větší obrazovky */}
-            <ul className="hidden md:flex md:space-x-4">
-              {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-                <li key={item} className="flex-shrink-0">
-                  <Link
-                    to={
-                      item === 'O nás' ? '/o-nas' :
-                      item === 'Aktuality' ? '/aktuality' :
-                      item === 'Kempy' ? '/kempy' :
-                      item === 'Ceník' ? '/cenik' :
-                      item === 'Školička' ? '/skolicka' :
-                      item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                      item === 'Kontakt' ? '/kontakt' :
-                      '/'
-                    }
-                    className="hover:text-yellow-300 transition duration-300 font-semibold"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+    {/* Menu pro větší obrazovky */}
+    <ul className="hidden md:flex md:space-x-4">
+      {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+        <li key={item} className="flex-shrink-0">
+          <Link
+            to={
+              item === 'O nás' ? '/o-nas' :
+              item === 'Aktuality' ? '/aktuality' :
+              item === 'Kempy' ? '/kempy' :
+              item === 'Ceník' ? '/cenik' :
+              item === 'Školička' ? '/skolicka' :
+              item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+              item === 'Kontakt' ? '/kontakt' :
+              '/'
+            }
+            className="hover:text-yellow-300 transition duration-300 font-semibold"
+          >
+            {item}
+          </Link>
+        </li>
+      ))}
+    </ul>
 
-            {/* Menu pro mobily */}
-            <div
-              className={`md:hidden fixed top-16 right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
-                isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-              } rounded-lg overflow-hidden`}
+    {/* Menu pro mobily */}
+    <div
+      className={`md:hidden fixed top-[4.5rem] right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
+        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      } rounded-lg overflow-hidden`}
+    >
+      <ul className="flex flex-col">
+        {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+          <li key={item} className="border-b border-gray-300">
+            <Link
+              to={
+                item === 'O nás' ? '/o-nas' :
+                item === 'Aktuality' ? '/aktuality' :
+                item === 'Kempy' ? '/kempy' :
+                item === 'Ceník' ? '/cenik' :
+                item === 'Školička' ? '/skolicka' :
+                item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+                item === 'Kontakt' ? '/kontakt' :
+                '/'
+              }
+              className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
+              onClick={() => setIsMenuOpen(false)}
             >
-              <ul className="flex flex-col">
-                {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-                  <li key={item} className="border-b border-gray-300">
-                    <Link
-                      to={
-                        item === 'O nás' ? '/o-nas' :
-                        item === 'Aktuality' ? '/aktuality' :
-                        item === 'Kempy' ? '/kempy' :
-                        item === 'Ceník' ? '/cenik' :
-                        item === 'Školička' ? '/skolicka' :
-                        item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                        item === 'Kontakt' ? '/kontakt' :
-                        '/'
-                      }
-                      className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </header>
+              {item}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>
+
 
       {/* Omezíme i hlavní část stránky na max šířku */}
-      <main className="pt-20 max-w-screen-xl mx-auto mt-8 mb-16 px-4 sm:px-6 lg:px-8">
+      <main className="pt-20 max-w-screen-xl mx-auto mt-12 mb-16 px-4 sm:px-6 lg:px-8">
         <section
-          className="relative bg-cover bg-center h-[500px] text-white flex items-center justify-center mb-10"
+          className="relative bg-cover rounded-lg bg-center h-[500px] text-white flex items-center justify-center mb-10"
           style={{
             backgroundImage: `url(${process.env.PUBLIC_URL}/teniskoberec.jpg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
         >
-          <div className="absolute inset-0 bg-black opacity-10"></div>
+          <div className="absolute inset-0 opacity-10"></div>
           <div className="relative z-10 text-center">
-            <h1 className="text-[48px] font-bold mb-4 text-orange-400">
+            <h1 className="text-[44px] font-bold mb-4 text-orange-300">
               Tenisová škola Čimice
             </h1>
-            <p className="text-xl mb-6 text-gray-300">
+            <p className="text-l mb-6 text-gray-300">
               Tréninky pro všechny věkové kategorie
             </p>
             <div className="flex justify-center space-x-4">
@@ -287,21 +286,25 @@ const Newhomepage = () => {
         </div>
 
         <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-green-700 hover:shadow-xl transition-all duration-300">
-          <div className="grid lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-1 text-left flex flex-col justify-center max-w-md mx-auto lg:mx-0">
-              <h2 className="text-3xl font-extrabold tracking-wide text-green-700 mb-6">
-                Tenisový areál
-              </h2>
-              <p className="text-gray-800 text-lg mb-4 leading-relaxed">
-                Náš tenisový areál nabízí různé povrchy a zázemí pro rozmanitou a nerušenou hru. K dispozici jsou 4 samostatné haly, které umožňují pohodlné hraní i v zimní sezóně.
-              </p>
-              <p className="text-gray-800 text-lg leading-relaxed">
-                Mezi povrchy naleznete <span className="font-semibold text-green-700">2 kurty s nově instalovanou umělou trávou (2023)</span>, 1 kurt s umělým povrchem a 2 antukové kurty.
-              </p>
-            </div>
+  <div className="grid lg:grid-cols-3 gap-8 items-start">
+    {/* Odstraněno max-w-md mx-auto, nahrazeno px-4 */}
+    <div className="lg:col-span-1 text-left flex flex-col justify-center px-4">
+      <h2 className="text-3xl font-extrabold tracking-wide text-green-700 mb-6">
+        Tenisový areál
+      </h2>
+      <p className="text-gray-800 text-lg mb-4 leading-relaxed">
+        Náš tenisový areál nabízí různé povrchy a zázemí pro rozmanitou a nerušenou hru. 
+        K dispozici jsou 4 samostatné haly, které umožňují pohodlné hraní i v zimní sezóně.
+      </p>
+      <p className="text-gray-800 text-lg leading-relaxed">
+        Mezi povrchy naleznete <span className="font-semibold text-green-700">
+          2 kurty s nově instalovanou umělou trávou (2023)
+        </span>, 1 kurt s pevným povrchem a 2 antukové kurty.
+      </p>
+    </div>
             
             {/* Letní sezóna */}
-            <div className="lg:col-span-1 flex flex-col items-center text-center pl-6 p-6 rounded-lg bg-white-50 hover:shadow-lg transition duration-300 transform">
+            <div className="lg:col-span-1 flex flex-col items-center text-center pl-6 p-6 rounded-lg bg-white-50 transition duration-300 transform">
               <h3 className="text-3xl font-bold text-green-700 tracking-wide mb-2">Letní sezóna</h3>
               <p className="text-green-700 text-lg font-bold mb-2">(duben – září)</p>
               <ul className="text-gray-800 mb-4 leading-relaxed text-lg">
@@ -316,7 +319,7 @@ const Newhomepage = () => {
             </div>
             
             {/* Zimní sezóna */}
-            <div className="lg:col-span-1 flex flex-col items-center text-center pl-6 p-6 bg-white-50 rounded-lg hover:shadow-lg transition duration-300 transform">
+            <div className="lg:col-span-1 flex flex-col items-center text-center pl-6 p-6 bg-white-50 rounded-lg transition duration-300 transform">
               <h3 className="text-3xl font-bold text-green-700 tracking-wide mb-2">Zimní sezóna</h3>
               <p className="text-green-700 text-lg font-bold mb-2">(říjen – březen)</p>
               <ul className="text-gray-800 mb-4 leading-relaxed text-lg">
@@ -333,18 +336,19 @@ const Newhomepage = () => {
         </section>
 
         <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-blue-600 hover:shadow-xl transition-all duration-300 mt-10">
-          <div className="grid lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-1 text-left flex flex-col justify-center max-w-md mx-auto lg:mx-0">
-              <h2 className="text-3xl font-extrabold tracking-wide text-blue-700 mb-6">
-                Trenérský tým
-              </h2>
-              <p className="text-gray-800 text-lg mb-4 leading-relaxed">
-                Náš tým trenérů je parta nadšených lidí, kteří tenis opravdu milují. Každý z nás má své zkušenosti a rádi je předáme dál – ať už jsi začátečník, nebo pokročilý.
-              </p>
-              <p className="text-gray-800 text-lg leading-relaxed">
-                Tréninky vedeme s přátelským přístupem, ale zároveň se snažíme, aby si každý z lekce odnesl něco nového a zlepšil svou hru.
-              </p>
-            </div>
+  <div className="grid lg:grid-cols-3 gap-8 items-start">
+    {/* Odstraněno max-w-md mx-auto, nahrazeno px-4 */}
+    <div className="lg:col-span-1 text-left flex flex-col justify-center px-4">
+      <h2 className="text-3xl font-extrabold tracking-wide text-blue-700 mb-6">
+        Trenérský tým
+      </h2>
+      <p className="text-gray-800 text-lg mb-4 leading-relaxed">
+        Náš tým trenérů je parta nadšených lidí, kteří tenis opravdu milují. Každý z nás má své zkušenosti a rádi je předáme dál – ať už jsi začátečník, nebo pokročilý.
+      </p>
+      <p className="text-gray-800 text-lg leading-relaxed">
+        Tréninky vedeme s přátelským přístupem, ale zároveň se snažíme, aby si každý z lekce odnesl něco nového a zlepšil svou hru.
+      </p>
+    </div>
             <div className="lg:col-span-2 flex justify-center h-full">
               <img
                 src={`${process.env.PUBLIC_URL}/tenisovyteam.jpg`}

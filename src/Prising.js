@@ -111,7 +111,7 @@ const Prising = () => {
       <main className="pt-20 max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
   <section className="bg-white rounded-lg shadow-lg p-12 mb-16">
     <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
-      Ceník tenisové školy
+      Ceník
     </h1>
     <p className="text-lg mb-10 text-gray-600 text-center max-w-2xl mx-auto">
       Vyberte si z našich tréninků a pronájmů. Nabízíme letní i zimní možnosti s flexibilními tarify.

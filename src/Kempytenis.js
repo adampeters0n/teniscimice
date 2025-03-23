@@ -212,7 +212,7 @@ const Kempytenis = () => {
       <main className="pt-20 max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
         <section className="bg-white rounded-lg shadow-lg p-12 mb-16">
           <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
-            Letní prázdninové akce 2024
+            Tenisové kempy
           </h1>
 
           <p className="text-lg mb-8 text-gray-700 text-center max-w-xl mx-auto leading-relaxed">

@@ -717,30 +717,27 @@ const newsItems = [
         </nav>
       </header>
       {/* Hlavní obsah */}
-      <main className="pt-20 max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-        <section className="mb-16 p-12">
-          <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
-            Aktuality
-          </h1>
-
-          {/* Zobrazení novinek v kartách */}
-          <div className="flex flex-col gap-8">
-  {newsItems.map((item, index) => (
-    <div
-      key={index}
-      className="bg-white rounded-lg shadow-lg p-6 flex flex-col"
-    >
-      <h2 className="text-2xl font-bold mb-2 text-red-600">
-        {item.title}
-      </h2>
-      <p className="text-sm text-gray-500 mb-4">{item.date}</p>
-      <div className="text-gray-700 flex-grow">{item.content}</div>
+      <main className="pt-20 max-w-7xl mx-auto mt-20 px-4 sm:px-6 lg:px-8">
+  <section className="p-0 mb-16">
+    <h1 className="text-5xl font-extrabold mb-8 text-orange-600 text-center">
+      Aktuality
+    </h1>
+    {/* Zobrazení novinek v kartách */}
+    <div className="flex flex-col gap-6">
+      {newsItems.map((item, index) => (
+        <div key={index} className="bg-white rounded-lg shadow-lg p-4 flex flex-col">
+          <h2 className="text-2xl font-bold mb-2 text-red-600">
+            {item.title}
+          </h2>
+          <p className="text-sm text-gray-500 mb-4">{item.date}</p>
+          <div className="text-gray-700 flex-grow">{item.content}</div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
+  </section>
+</main>
 
-        </section>
-      </main>
+
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white px-4 sm:px-6 lg:px-8">

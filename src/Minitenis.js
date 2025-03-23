@@ -116,7 +116,7 @@ const Minitenis = () => {
     <div className="flex flex-col lg:flex-row items-center justify-between mb-12">
       <div className="lg:w-1/2">
         <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
-          Školička Minitenisu
+          Školička Minitenis
         </h1>
         <p className="text-lg mb-10 text-gray-600 text-center max-w-2xl mx-auto leading-relaxed">
           Pro děti od 4 až 7 let: Seznamte své děti s tenisem s pomocí speciálních pomůcek a her!
