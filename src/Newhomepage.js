@@ -84,7 +84,7 @@ const Newhomepage = () => {
     <div className="min-h-screen bg-amber-50">
       
       {/* Upravíme header tak, aby se obsah fixně vycentroval a neroztahoval */}
-      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-6 left-4 right-4 z-50 px-6 py-4 rounded-b-2xl rounded-t-2xl shadow-lg">
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-4 left-4 right-4 z-50 px-6 py-4 rounded-b-2xl rounded-t-2xl shadow-lg">
   <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
     <div className="flex items-center">
       <Link to="/">
@@ -184,7 +184,7 @@ const Newhomepage = () => {
 
 
       {/* Omezíme i hlavní část stránky na max šířku */}
-      <main className="pt-20 max-w-screen-xl mx-auto mt-12 mb-16 px-4 sm:px-6 lg:px-8">
+      <main className="pt-20 max-w-screen-xl mx-auto mt-10 mb-16 px-4 sm:px-6 lg:px-8">
         <section
           className="relative bg-cover rounded-lg bg-center h-[500px] text-white flex items-center justify-center mb-10"
           style={{
