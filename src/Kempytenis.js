@@ -67,8 +67,6 @@ const KempSection = ({ title, date, description, images }) => {
 
 const Kempytenis = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentCimiceImageIndex, setCurrentCimiceImageIndex] = useState(0);
 
   const malaSkalaPopis = "Naše tenisové soustředění v Malé Skále nabízí intenzivní trénink a zábavu pro všechny úrovně hráčů. Užijte si týden plný tenisu v krásném prostředí Českého ráje.";
   const primestskePopis = "Příměstské kempy v Čimicích poskytují skvělou příležitost pro místní děti zlepšit své tenisové dovednosti a užít si aktivní léto. Každý den je plný tréninku, her a zábavy.";
@@ -93,38 +91,32 @@ const Kempytenis = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const nextImage = (setter) => {
-    setter((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const prevImage = (setter) => {
-    setter((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  const nextImage = (setter, imageArray) => {
+    setter((prevIndex) => (prevIndex + 1) % imageArray.length);
   };
 
   useEffect(() => {
-    const timerMalaSkala = setInterval(() => nextImage(setCurrentImageIndex), 5000);
-    const timerCimice = setInterval(() => nextImage(setCurrentCimiceImageIndex), 5000);
+    const timerMalaSkala = setInterval(() => nextImage(setCurrentImageIndex, images), 5000);
+    const timerCimice = setInterval(() => nextImage(setCurrentCimiceImageIndex, cimiceImages), 5000);
     return () => {
       clearInterval(timerMalaSkala);
       clearInterval(timerCimice);
     };
-  }, []);
+  }, [nextImage, images, cimiceImages]); // Přidány závislosti
 
   return (
     <div className="min-h-screen bg-amber-50">
-     <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
         <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/">
               <img
-                // Logo z public složky
                 src={`${process.env.PUBLIC_URL}/logocimice.png`}
                 alt="Tenis Čimice Logo"
                 className="h-12 w-12 mr-2"
               />
             </Link>
             <div className="ml-4 flex flex-col items-center">
-              {/* Externí odkazy mohou zůstat <a> */}
               <a
                 href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
                 target="_blank"
@@ -219,58 +211,56 @@ const Kempytenis = () => {
             Připojte se k našim letním akcím a užijte si nezapomenutelné chvíle plné sportu a zábavy!
           </p>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <KempSection
-        title="Malá Skála"
-        date="14. 7. - 20. 7. 2024"
-        description={malaSkalaPopis}
-        images={images}
-      />
-      <KempSection
-        title="Příměstské kempy v Čimicích"
-        date="22. 7. - 31. 8. 2024"
-        description={primestskePopis}
-        images={cimiceImages}
-      />
-    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <KempSection
+              title="Malá Skála"
+              date="14. 7. - 20. 7. 2024"
+              description={malaSkalaPopis}
+              images={images}
+            />
+            <KempSection
+              title="Příměstské kempy v Čimicích"
+              date="22. 7. - 31. 8. 2024"
+              description={primestskePopis}
+              images={cimiceImages}
+            />
+          </div>
 
-    {/* Přidání mezery pod sekcemi */}
-    <div className="mt-12"></div>
+          {/* Přidání mezery pod sekcemi */}
+          <div className="mt-12"></div>
 
-    {/* Kemp Info Section */}
-    <div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
-      <h2 className="text-2xl font-semibold text-red-600">Informace o příměstském kempu</h2>
-      <p className="text-lg mt-4 text-gray-700 leading-relaxed">
-        Naše letní příměstské tenisové kempy pořádáme již od roku 2006. Mohou se
-        účastnit i děti, které netrénují v naší TŠ, bez ohledu na úroveň tenisu.
-      </p>
+          {/* Kemp Info Section */}
+          <div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
+            <h2 className="text-2xl font-semibold text-red-600">Informace o příměstském kempu</h2>
+            <p className="text-lg mt-4 text-gray-700 leading-relaxed">
+              Naše letní příměstské tenisové kempy pořádáme již od roku 2006. Mohou se
+              účastnit i děti, které netrénují v naší TŠ, bez ohledu na úroveň tenisu.
+            </p>
 
-      <h3 className="text-xl font-semibold mt-6 text-red-600">Program:</h3>
-      <p className="text-lg mt-4 text-gray-700 leading-relaxed">
-        Děti jsou rozdělené do skupin podle úrovně a věku. Aktivity zahrnují
-        tenisový trénink, kondiční cvičení a soutěže. Poslední den je věnován
-        turnaji s cenami.
-      </p>
+            <h3 className="text-xl font-semibold mt-6 text-red-600">Program:</h3>
+            <p className="text-lg mt-4 text-gray-700 leading-relaxed">
+              Děti jsou rozdělené do skupin podle úrovně a věku. Aktivity zahrnují
+              tenisový trénink, kondiční cvičení a soutěže. Poslední den je věnován
+              turnaji s cenami.
+            </p>
 
-      <h3 className="text-xl font-semibold mt-6 text-red-600">Co s sebou:</h3>
-      <ul className="list-disc list-inside text-lg mt-4 text-gray-600">
-        <li>Raketu, švihadlo, láhev na pití</li>
-        <li>Kšiltovku, opalovací krém</li>
-        <li>Tenisovou obuv a přezůvky</li>
-        <li>Oblečení dle počasí, ručník</li>
-      </ul>
+            <h3 className="text-xl font-semibold mt-6 text-red-600">Co s sebou:</h3>
+            <ul className="list-disc list-inside text-lg mt-4 text-gray-600">
+              <li>Raketu, švihadlo, láhev na pití</li>
+              <li>Kšiltovku, opalovací krém</li>
+              <li>Tenisovou obuv a přezůvky</li>
+              <li>Oblečení dle počasí, ručník</li>
+            </ul>
 
-      <p className="text-lg mt-6 text-gray-700">
-        Program začíná v 9:00, sraz je mezi 8:30 - 9:00. Konec v 16:00, s
-        vyzvednutím do 16:30.
-      </p>
+            <p className="text-lg mt-6 text-gray-700">
+              Program začíná v 9:00, sraz je mezi 8:30 - 9:00. Konec v 16:00, s
+              vyzvednutím do 16:30.
+            </p>
 
-      <p className="text-lg mt-4 text-gray-700">Těšíme se na všechny děti!</p>
-    </div>
-  </section>
-</main>
-
-
+            <p className="text-lg mt-4 text-gray-700">Těšíme se na všechny děti!</p>
+          </div>
+        </section>
+      </main>
 
       <footer className="bg-gray-800 text-white px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto py-8 flex flex-col md:flex-row justify-between">
@@ -303,18 +293,18 @@ const Kempytenis = () => {
                 </a>
               </li>
               <li className="flex items-center">
-          <Phone className="mr-2" />
-          <a
-            href="tel:+420724265022"
-            className="text-gray-400 hover:text-white"
-          >
-            +420 724 265 022
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</footer>
+                <Phone className="mr-2" />
+                <a
+                  href="tel:+420724265022"
+                  className="text-gray-400 hover:text-white"
+                >
+                  +420 724 265 022
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
