@@ -84,7 +84,7 @@ const Newhomepage = () => {
     <div className="min-h-screen bg-amber-50">
       
       {/* Upravíme header tak, aby se obsah fixně vycentroval a neroztahoval */}
-      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-4 left-4 right-4 z-50 px-6 py-4 rounded-b-2xl rounded-t-2xl shadow-lg">
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-5 left-4 right-4 z-50 px-6 py-2 rounded-b-2xl rounded-t-2xl shadow-lg">
   <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
     <div className="flex items-center">
       <Link to="/">
@@ -152,33 +152,33 @@ const Newhomepage = () => {
 
     {/* Menu pro mobily */}
     <div
-      className={`md:hidden fixed top-[4.5rem] right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
-        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-      } rounded-lg overflow-hidden`}
-    >
-      <ul className="flex flex-col">
-        {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-          <li key={item} className="border-b border-gray-300">
-            <Link
-              to={
-                item === 'O nás' ? '/o-nas' :
-                item === 'Aktuality' ? '/aktuality' :
-                item === 'Kempy' ? '/kempy' :
-                item === 'Ceník' ? '/cenik' :
-                item === 'Školička' ? '/skolicka' :
-                item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                item === 'Kontakt' ? '/kontakt' :
-                '/'
-              }
-              className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+  className={`md:hidden fixed top-[4.5rem] right-0 w-64 bg-amber-50 text-orange-700 shadow-md transform transition-transform duration-500 ${
+    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+  } rounded-xl overflow-hidden`}
+>
+  <ul className="flex flex-col">
+    {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+      <li key={item} className="border-b border-orange-200">
+        <Link
+          to={
+            item === 'O nás' ? '/o-nas' :
+            item === 'Aktuality' ? '/aktuality' :
+            item === 'Kempy' ? '/kempy' :
+            item === 'Ceník' ? '/cenik' :
+            item === 'Školička' ? '/skolicka' :
+            item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+            item === 'Kontakt' ? '/kontakt' :
+            '/'
+          }
+          className="block px-4 py-3 hover:bg-orange-200 transition duration-300 font-semibold"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          {item}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
   </nav>
 </header>
 
@@ -351,7 +351,7 @@ const Newhomepage = () => {
     </div>
             <div className="lg:col-span-2 flex justify-center h-full">
               <img
-                src={`${process.env.PUBLIC_URL}/tenisovyteam.jpg`}
+                src={`${process.env.PUBLIC_URL}/fotkatreneri.jpg`}
                 alt="Trenérský tým"
                 className="rounded-lg w-full max-w-full shadow-md object-cover"
               />
