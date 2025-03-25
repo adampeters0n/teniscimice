@@ -23,11 +23,10 @@ function ScrollToTop() {
 
 function App() {
   return (
-    // Nastavíme basename na '/teniscimice'
-    <Router basename="/teniscimice">
+    // Odstraníme basename, takže '/' bude skutečně kořenová URL
+    <Router>
       <ScrollToTop />
       <Routes>
-        {/* Nyní '/' odpovídá URL '/teniscimice' */}
         <Route path="/" element={<Newhomepage />} />
         <Route path="/cenik" element={<Prising />} />
         <Route path="/o-nas" element={<Onasnas />} />
