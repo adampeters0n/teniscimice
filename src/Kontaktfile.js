@@ -11,19 +11,17 @@ const Kontaktfile = () => {
   
   return (
     <div className="min-h-screen bg-amber-50">
-     <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
         <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/">
               <img
-                // Logo z public složky
                 src={`${process.env.PUBLIC_URL}/logocimice.png`}
                 alt="Tenis Čimice Logo"
                 className="h-12 w-12 mr-2"
               />
             </Link>
             <div className="ml-4 flex flex-col items-center">
-              {/* Externí odkazy mohou zůstat <a> */}
               <a
                 href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
                 target="_blank"
@@ -137,10 +135,11 @@ const Kontaktfile = () => {
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d639.2881258161946!2d14.430786928521691!3d50.13957885775381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDA4JzIyLjUiTiAxNMKwMjUnNTMuMiJF!5e0!3m2!1scs!2scz!4v1726238091411!5m2!1scs!2scz" 
                 width="100%" 
                 height="450" 
-                style={{border:0}} 
+                style={{ border: 0 }} 
                 allowFullScreen="" 
-                loading="lazy">
-              </iframe>
+                loading="lazy"
+                title="Mapa Tenis Čimice" 
+              />
             </div>
 
             {/* Team Section */}
@@ -148,7 +147,7 @@ const Kontaktfile = () => {
               <h2 className="text-3xl font-semibold text-red-600">Trenérský tým</h2>
               <ul className="list-none">
                 <li><strong>KATEŘINA PETERKOVÁ</strong>, trenér I. třída - licence ČTS, rozhodčí licence B<br />
-                  <a href="tel:+420724265022" className="text-gray-700">724 265 022</a> &nbsp; | &nbsp; <a href="mailto:kptenis@volny.cz" className="text-blue-600">kptenis@volny.cz</a>
+                  <a href="tel:+420724265022" className="text-gray-700">724 265 022</a>   |   <a href="mailto:kptenis@volny.cz" className="text-blue-600">kptenis@volny.cz</a>
                 </li>
                 <li><strong>OTA FUKÁREK</strong>, trenér II. třída</li>
                 <li><strong>MARTIN STAVĚL</strong>, trenér II. třída</li>
@@ -174,7 +173,8 @@ const Kontaktfile = () => {
             <form 
               action="https://formspree.io/f/xzzpqgqy" 
               method="POST" 
-              className="space-y-6">
+              className="space-y-6"
+            >
               <div>
                 <label className="block text-gray-700 font-medium">Jméno a příjmení *</label>
                 <input type="text" name="name" className="mt-1 p-3 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500" required />
@@ -196,53 +196,52 @@ const Kontaktfile = () => {
               </div>
             </form>
           </div>
-
         </section>
       </main>
 
       <footer className="bg-gray-800 text-white px-4 sm:px-6 lg:px-8">
-  <div className="max-w-7xl mx-auto py-8 flex flex-col md:flex-row justify-between">
-    <div className="mb-4 md:mb-0">
-      <h3 className="text-2xl font-semibold mb-2">Tenis Čimice</h3>
-      <p className="text-gray-400">
-        Na Průhonu 812/3, 181 00 Praha 8 <br />
-        © 2024 Tenis Čimice
-      </p>
-    </div>
-    <div>
-      <h3 className="text-xl font-semibold mb-2">Kontaktujte nás</h3>
-      <ul>
-        <li className="flex items-center">
-          <Mail className="mr-2" />
-          <a
-            href="mailto:kptennis@volny.cz"
-            className="text-gray-400 hover:text-white"
-          >
-            kptennis@volny.cz
-          </a>
-        </li>
-        <li className="flex items-center">
-          <Phone className="mr-2" />
-          <a
-            href="tel:+420602354978"
-            className="text-gray-400 hover:text-white"
-          >
-            +420 602 354 978
-          </a>
-        </li>
-        <li className="flex items-center">
-          <Phone className="mr-2" />
-          <a
-            href="tel:+420724265022"
-            className="text-gray-400 hover:text-white"
-          >
-            +420 724 265 022
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</footer>
+        <div className="max-w-7xl mx-auto py-8 flex flex-col md:flex-row justify-between">
+          <div className="mb-4 md:mb-0">
+            <h3 className="text-2xl font-semibold mb-2">Tenis Čimice</h3>
+            <p className="text-gray-400">
+              Na Průhonu 812/3, 181 00 Praha 8 <br />
+              © 2024 Tenis Čimice
+            </p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-2">Kontaktujte nás</h3>
+            <ul>
+              <li className="flex items-center">
+                <Mail className="mr-2" />
+                <a
+                  href="mailto:kptennis@volny.cz"
+                  className="text-gray-400 hover:text-white"
+                >
+                  kptennis@volny.cz
+                </a>
+              </li>
+              <li className="flex items-center">
+                <Phone className="mr-2" />
+                <a
+                  href="tel:+420602354978"
+                  className="text-gray-400 hover:text-white"
+                >
+                  +420 602 354 978
+                </a>
+              </li>
+              <li className="flex items-center">
+                <Phone className="mr-2" />
+                <a
+                  href="tel:+420724265022"
+                  className="text-gray-400 hover:text-white"
+                >
+                  +420 724 265 022
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
