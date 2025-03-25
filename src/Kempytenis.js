@@ -91,19 +91,6 @@ const Kempytenis = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const nextImage = (setter, imageArray) => {
-    setter((prevIndex) => (prevIndex + 1) % imageArray.length);
-  };
-
-  useEffect(() => {
-    const timerMalaSkala = setInterval(() => nextImage(setCurrentImageIndex, images), 5000);
-    const timerCimice = setInterval(() => nextImage(setCurrentCimiceImageIndex, cimiceImages), 5000);
-    return () => {
-      clearInterval(timerMalaSkala);
-      clearInterval(timerCimice);
-    };
-  }, [nextImage, images, cimiceImages]); // Přidány závislosti
-
   return (
     <div className="min-h-screen bg-amber-50">
       <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
