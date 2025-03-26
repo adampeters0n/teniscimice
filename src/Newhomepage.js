@@ -74,10 +74,10 @@ const Newhomepage = () => {
   ];
 
   const winterImages = [
-    `${process.env.PUBLIC_URL}/kurty1zima.png`,
-    `${process.env.PUBLIC_URL}/kurty2zima.png`,
-    `${process.env.PUBLIC_URL}/kurty3zima.png`,
-    `${process.env.PUBLIC_URL}/kurty4zima.png`,
+    `${process.env.PUBLIC_URL}/kurty1zima.jpg`,
+    `${process.env.PUBLIC_URL}/kurty2zima.jpg`,
+    `${process.env.PUBLIC_URL}/kurty3zima.jpg`,
+    `${process.env.PUBLIC_URL}/kurty4zima.jpg`,
   ];
 
   return (
