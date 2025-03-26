@@ -11,100 +11,103 @@ const Rezervacekurtu = () => {
   
   return (
     <div className="min-h-screen bg-amber-50">
-      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-0 left-0 right-0 z-50 py-4 px-6">
-        <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
-          <div className="flex items-center">
-            <Link to="/">
-              <img
-                src={`${process.env.PUBLIC_URL}/logocimice.png`}
-                alt="Tenis Čimice Logo"
-                className="h-12 w-12 mr-2"
-              />
-            </Link>
-            <div className="ml-4 flex flex-col items-center">
-              <a
-                href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-yellow-300"
-              >
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/yourprofile"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-yellow-300 mt-2"
-              >
-                <Instagram className="h-6 w-6" />
-              </a>
-            </div>
-          </div>
+      <header className="bg-gradient-to-r from-orange-500 to-red-600 text-white fixed top-5 left-4 right-4 z-50 px-6 py-2 rounded-b-2xl rounded-t-2xl shadow-lg">
+  <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
+    <div className="flex items-center">
+      <Link to="/">
+        <img
+          // Logo z public složky
+          src={`${process.env.PUBLIC_URL}/logocimice.png`}
+          alt="Tenis Čimice Logo"
+          className="h-12 w-12 mr-2"
+        />
+      </Link>
+      {/* Odebrán text "Tenis Čimice", zachovány sociální ikony */}
+      <div className="ml-4 flex flex-col items-center">
+        <a
+          href="https://www.facebook.com/people/Kate%C5%99ina-Peterkov%C3%A1/pfbid0TncMRnyejaJkEkYUzi36H7si3prwYeLDfqJiudBjHMHcPPrWKEeyokFt3Nctphj2l/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white hover:text-yellow-300"
+        >
+          <Facebook className="h-6 w-6" />
+        </a>
+        <a
+          href="https://www.instagram.com/tenis_cimice/?utm_source=qr"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white hover:text-yellow-300 mt-2"
+        >
+          <Instagram className="h-6 w-6" />
+        </a>
+      </div>
+    </div>
 
-          <div className="flex items-center md:hidden">
-            <button onClick={toggleMenu} aria-label="Toggle Menu">
-              {isMenuOpen ? (
-                <CloseIcon className="h-8 w-8" />
-              ) : (
-                <MenuIcon className="h-8 w-8" />
-              )}
-            </button>
-          </div>
+    {/* Hamburger menu pro mobilní zobrazení */}
+    <div className="flex items-center md:hidden">
+      <button onClick={toggleMenu} aria-label="Toggle Menu">
+        {isMenuOpen ? (
+          <CloseIcon className="h-8 w-8" />
+        ) : (
+          <MenuIcon className="h-8 w-8" />
+        )}
+      </button>
+    </div>
 
-          {/* Menu pro větší obrazovky */}
-          <ul className="hidden md:flex md:space-x-4">
-            {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-              <li key={item} className="flex-shrink-0">
-                <Link
-                  to={
-                    item === 'O nás' ? '/o-nas' :
-                    item === 'Aktuality' ? '/aktuality' :
-                    item === 'Kempy' ? '/kempy' :
-                    item === 'Ceník' ? '/cenik' :
-                    item === 'Školička' ? '/skolicka' :
-                    item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                    item === 'Kontakt' ? '/kontakt' :
-                    '/'
-                  }
-                  className="hover:text-yellow-300 transition duration-300 font-semibold"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* Menu pro mobily */}
-          <div
-            className={`md:hidden fixed top-16 right-0 w-64 bg-white text-black shadow-lg transform transition-transform ${
-              isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            } rounded-lg overflow-hidden`}
+    {/* Menu pro větší obrazovky */}
+    <ul className="hidden md:flex md:space-x-4">
+      {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+        <li key={item} className="flex-shrink-0">
+          <Link
+            to={
+              item === 'O nás' ? '/o-nas' :
+              item === 'Aktuality' ? '/aktuality' :
+              item === 'Kempy' ? '/kempy' :
+              item === 'Ceník' ? '/cenik' :
+              item === 'Školička' ? '/skolicka' :
+              item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+              item === 'Kontakt' ? '/kontakt' :
+              '/'
+            }
+            className="hover:text-yellow-300 transition duration-300 font-semibold"
           >
-            <ul className="flex flex-col">
-              {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
-                <li key={item} className="border-b border-gray-300">
-                  <Link
-                    to={
-                      item === 'O nás' ? '/o-nas' :
-                      item === 'Aktuality' ? '/aktuality' :
-                      item === 'Kempy' ? '/kempy' :
-                      item === 'Ceník' ? '/cenik' :
-                      item === 'Školička' ? '/skolicka' :
-                      item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
-                      item === 'Kontakt' ? '/kontakt' :
-                      '/'
-                    }
-                    className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
-      </header>
+            {item}
+          </Link>
+        </li>
+      ))}
+    </ul>
+
+    {/* Menu pro mobily */}
+    <div
+  className={`md:hidden fixed top-[4.5rem] right-0 w-64 bg-amber-50 text-orange-700 shadow-md transform transition-transform duration-500 ${
+    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+  } rounded-xl overflow-hidden`}
+>
+  <ul className="flex flex-col">
+    {['O nás', 'Aktuality', 'Kempy', 'Ceník', 'Školička', 'Doplňkové služby', 'Kontakt'].map((item) => (
+      <li key={item} className="border-b border-orange-200">
+        <Link
+          to={
+            item === 'O nás' ? '/o-nas' :
+            item === 'Aktuality' ? '/aktuality' :
+            item === 'Kempy' ? '/kempy' :
+            item === 'Ceník' ? '/cenik' :
+            item === 'Školička' ? '/skolicka' :
+            item === 'Doplňkové služby' ? '/doplnkove-sluzby' :
+            item === 'Kontakt' ? '/kontakt' :
+            '/'
+          }
+          className="block px-4 py-3 hover:bg-orange-200 transition duration-300 font-semibold"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          {item}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
+  </nav>
+</header>
 
       <main className="pt-20 max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
         <section className="bg-white rounded-lg shadow-lg p-12 mb-16">

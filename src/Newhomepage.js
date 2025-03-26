@@ -70,14 +70,14 @@ const Newhomepage = () => {
     `${process.env.PUBLIC_URL}/kurt2.jpg`,
     `${process.env.PUBLIC_URL}/kurt1.jpg`,
     `${process.env.PUBLIC_URL}/letnisezonaimage.jpg`,
-    `${process.env.PUBLIC_URL}/summer4.jpg`,
+    `${process.env.PUBLIC_URL}/kurty4zima.png`,
   ];
 
   const winterImages = [
-    `${process.env.PUBLIC_URL}/zimnisezonaimage.jpg`,
-    `${process.env.PUBLIC_URL}/kurtyhala2.jpg`,
-    `${process.env.PUBLIC_URL}/winter3.jpg`,
-    `${process.env.PUBLIC_URL}/winter4.jpg`,
+    `${process.env.PUBLIC_URL}/kurty1zima.png`,
+    `${process.env.PUBLIC_URL}/kurty2zima.png`,
+    `${process.env.PUBLIC_URL}/kurty3zima.png`,
+    `${process.env.PUBLIC_URL}/kurty4zima.png`,
   ];
 
   return (
@@ -106,7 +106,7 @@ const Newhomepage = () => {
           <Facebook className="h-6 w-6" />
         </a>
         <a
-          href="https://www.instagram.com/yourprofile"
+          href="https://www.instagram.com/tenis_cimice/?utm_source=qr"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-yellow-300 mt-2"
@@ -198,7 +198,7 @@ const Newhomepage = () => {
             <h1 className="text-[44px] font-bold mb-4 text-orange-300">
               Tenisová škola Čimice
             </h1>
-            <p className="text-l mb-6 text-gray-300">
+            <p className="text-l mb-6 text-yellow-50">
               Tréninky pro všechny věkové kategorie
             </p>
             <div className="flex justify-center space-x-4">
