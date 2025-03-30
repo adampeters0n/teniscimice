@@ -110,7 +110,7 @@ const Nasekurzy = () => {
 </header>
 
       <main className="pt-20 max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-  <section className="bg-white rounded-lg shadow-lg p-12 mb-16">
+  <section className="bg-white rounded-lg shadow-lg p-8 mb-16">
     <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
       Ceník tenisové školy
     </h1>
@@ -122,7 +122,7 @@ const Nasekurzy = () => {
     <div className="my-16"></div>
 
     {/* Letní sezona */}
-    <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">Letní sezona 2024 (8. 4. - 5. 10. 2024)</h2>
+    <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">Letní sezona 2025</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[
         { name: 'Jeden hráč + trenér', price: '590 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
@@ -140,7 +140,7 @@ const Nasekurzy = () => {
     </div>
 
     {/* Zimní sezona */}
-    <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Zimní sezona 2024/2025 (7. 10. 2024 - 4. 4. 2025)</h2>
+    <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Zimní sezona 2024/2025</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[
         { name: 'Jeden hráč + trenér', price: '790 Kč / 1h', description: 'Tréninková lekce s trenérem.' },

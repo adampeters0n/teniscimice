@@ -186,7 +186,7 @@ const Newhomepage = () => {
       {/* Omezíme i hlavní část stránky na max šířku */}
       <main className="pt-20 max-w-screen-xl mx-auto mt-10 mb-16 px-4 sm:px-6 lg:px-8">
         <section
-          className="relative bg-cover rounded-lg bg-center h-[500px] text-white flex items-center justify-center mb-10"
+          className="relative bg-cover rounded-lg bg-center h-[500px] text-white flex items-center justify-center mb-8"
           style={{
             backgroundImage: `url(${process.env.PUBLIC_URL}/teniskoberec.jpg)`,
             backgroundSize: 'cover',
@@ -218,7 +218,7 @@ const Newhomepage = () => {
           </div>
         </section>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-10">
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
           <section
             id="cenik"
             className="bg-white rounded-lg shadow-md p-6 border-t-4 border-orange-500 hover:shadow-lg transition duration-300 transform hover:scale-105"
@@ -285,8 +285,8 @@ const Newhomepage = () => {
           </section>
         </div>
 
-        <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-green-700 hover:shadow-xl transition-all duration-300">
-  <div className="grid lg:grid-cols-3 gap-8 items-start">
+        <section className="w-full bg-white shadow-lg p-8 border-t-4 border-green-700 hover:shadow-xl transition-all duration-300">
+  <div className="grid lg:grid-cols-3 gap-4 items-start">
     {/* Odstraněno max-w-md mx-auto, nahrazeno px-4 */}
     <div className="lg:col-span-1 text-left flex flex-col justify-center px-4">
       <h2 className="text-3xl font-extrabold tracking-wide text-green-700 mb-6">
@@ -335,7 +335,7 @@ const Newhomepage = () => {
           </div>
         </section>
 
-        <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-blue-600 hover:shadow-xl transition-all duration-300 mt-10">
+        <section className="bg-white rounded-l shadow-lg p-8 border-t-4 border-blue-600 hover:shadow-xl transition-all duration-300 mt-10">
   <div className="grid lg:grid-cols-3 gap-8 items-start">
     {/* Odstraněno max-w-md mx-auto, nahrazeno px-4 */}
     <div className="lg:col-span-1 text-left flex flex-col justify-center px-4">
@@ -359,7 +359,7 @@ const Newhomepage = () => {
           </div>
         </section>
 
-        <section className="bg-white rounded-xl shadow-lg p-12 border-t-4 border-orange-600 hover:shadow-xl transition-all duration-300 mt-10">
+        <section className="bg-white rounded-l shadow-lg p-8 border-t-4 border-orange-600 hover:shadow-xl transition-all duration-300 mt-10">
           <div className="bg-white gap-8 rounded-lg">
             <h2 className="text-3xl font-extrabold text-orange-600 mb-6">Napište nám</h2>
             <form

@@ -110,7 +110,7 @@ const Prising = () => {
 </header>
 
       <main className="pt-20 max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-  <section className="bg-white rounded-lg shadow-lg p-12 mb-16">
+  <section className="bg-white rounded-lg shadow-lg p-8 mb-16">
     <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
       Ceník
     </h1>
@@ -119,7 +119,7 @@ const Prising = () => {
     </p>
 
         {/* Pronájem kurtů letní sezona */}
-        <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Pronájem tenisových kurtů (letní sezona)</h2>
+        <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Pronájem kurtů (letní sezona)</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {[
         { name: 'Antukové kurty', price: '200 Kč / 1h', description: '180 Kč / 1h s předplatným na sezonu.' },
@@ -138,7 +138,7 @@ const Prising = () => {
     <div className="my-16"></div>
 
     {/* Letní sezona */}
-    <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">Letní sezona 2024 (8. 4. - 5. 10. 2024)</h2>
+    <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">Letní sezona 2025</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[
         { name: 'Jeden hráč + trenér', price: '590 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
@@ -156,7 +156,7 @@ const Prising = () => {
     </div>
 
     {/* Pronájem haly zimní sezona */}
-    <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Pronájem haly (zimní sezona 2024/2025)</h2>
+    <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Pronájem haly (zimní sezona)</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {[
         { time: '07:00 - 14:00', weekday: '400 Kč / 1h', weekend: '400 Kč / 1h' },
@@ -173,14 +173,19 @@ const Prising = () => {
 
     {/* Předplatné na celou sezónu */}
     <div className="mt-8 p-6 bg-gray-50 border-2 border-gray-300 rounded-lg text-center">
-      <h3 className="text-2xl font-bold text-gray-900 mb-4">Předplatné na celou sezónu</h3>
-      <p className="text-lg text-gray-700">
-        7. 10. 2024 - 4. 4. 2025: 1 hodina za 390 Kč nebo 1 hodina za 490 Kč
-      </p>
-    </div>
+  <h3 className="text-2xl font-bold text-gray-900 mb-4">Předplatné na celou sezónu</h3>
+  <p className="text-lg text-gray-700">
+    Pro předplatitele platí zvýhodněné ceny (390 Kč / 490 Kč)
+    místo běžných 400 Kč / 530 Kč.
+  </p>
+  <p className="text-gray-600 mt-2">
+    Platí od 7. 10. 2024 do 4. 4. 2025
+  </p>
+</div>
+
 
     {/* Zimní sezona */}
-    <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Zimní sezona 2024/2025 (7. 10. 2024 - 4. 4. 2025)</h2>
+    <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Zimní sezona 2024/2025</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[
         { name: 'Jeden hráč + trenér', price: '790 Kč / 1h', description: 'Tréninková lekce s trenérem.' },

@@ -119,7 +119,7 @@ const Onasnas = () => {
 
       {/* MAIN */}
       <main className="pt-20 max-w-screen-xl mx-auto mt-8 mb-16 px-4 sm:px-6 lg:px-8">
-        <section className="bg-white rounded-lg shadow-lg p-12 mb-16">
+        <section className="bg-white rounded-lg shadow-lg p-8 mb-16">
           <h1 className="text-5xl font-extrabold mb-6 text-orange-600 text-center">
             Tenisová škola Čimice
           </h1>
