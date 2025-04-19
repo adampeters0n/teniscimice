@@ -313,7 +313,7 @@ const Newhomepage = () => {
                 <br />
               </ul>
               <p className="text-gray-700 text-base italic mb-4">
-                Ideální podmínky pro venkovní hru po celé léto.
+              Ideální podmínky pro venkovní hru celé léto.
               </p>
               <ImageCarousel images={summerImages} className="w-full max-w-md rounded-lg shadow-md" />
             </div>
