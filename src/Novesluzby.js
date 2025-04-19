@@ -135,11 +135,11 @@ const Novesluzby = () => {
                 Cena za vyplétání se zakoupeným výpletem závisí na zvoleném typu strun:
               </p>
               <ul className="text-gray-700 list-disc list-inside mt-4">
-                <li><strong>Babolat RPM Blast (Černý)</strong>: 480 Kč</li>
-                <li><strong>RPM Rough (Žlutý, Červený)</strong>: 480 Kč</li>
-                <li><strong>RPM Power (Modrý, Hnědý)</strong>: 420 Kč</li>
-                <li><strong>RPM Hurricane (Žlutý)</strong>: 420 Kč</li>
-                <li><strong>RPM Soft (Šedý)</strong>: 420 Kč</li>
+                <li><strong>Babolat RPM Blast (Černý)</strong>: 450 Kč</li>
+                <li><strong>RPM Rough (Žlutý, Červený)</strong>: 450 Kč</li>
+                <li><strong>RPM Power (Modrý, Hnědý)</strong>: 400 Kč</li>
+                <li><strong>RPM Hurricane (Žlutý)</strong>: 400 Kč</li>
+                <li><strong>RPM Soft (Šedý)</strong>: 400 Kč</li>
                 <li><strong>Babolat SYN Gut (Žlutý)</strong>: 400 Kč</li>
               </ul>
             </div>

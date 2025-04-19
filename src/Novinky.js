@@ -19,6 +19,52 @@ const Novinky = () => {
   // Definice novinek
 const newsItems = [
   {
+    title: 'Start venkovní sezóny',
+    date: '14.4.2025',
+    content: (
+      <>
+        <p>Antukové kurty otevřeny denně 7:00 – 21:00</p>
+        <br />
+        <p>Těšíme se na první jarní výměny. 🌞</p>
+      </>
+    ),
+  },
+  {
+    title: 'Velikonoční turnaj – děti',
+    date: '29.3.2025',
+    content: (
+      <>
+        <p>Hravé dopoledne pro mladé hráče, start 9:00 (registrace do 28.3.)..</p>
+        <br />
+        <p>Startovné 300 Kč; medaile, čokoládové odměny a spousta zábavy. 🐰🥇</p>
+      </>
+    ),
+  },
+  {
+    title: 'Tréninková sobota',
+    date: '13.3.2025',
+    content: (
+      <>
+        <p>Společné drily a hry pro všechny věkové kategorie, 9:00 – 12:00.</p>
+        <p>15.3.2025, 22.3.2025 a 5.4.2025</p>
+        <br />
+        <p>Pitný režim a míče zajištěny; stačí dobrá nálada. 😊</p>
+      </>
+    ),
+  },
+  {
+    title: 'Gratulace Natálce Mackové a Davidu Haramule',
+    date: '8.3.2025',
+    content: (
+      <>
+        <p>NATÁLKA MACKOVÁ ve finále domácího turnaje staršího žactva ČTS ve čtyřhře.</p>
+        <p>DAVID HARAMULE v semifinále dvouhry.</p>
+        <br />
+        <p>Gratulace oběma</p>
+      </>
+    ),
+  },
+  {
     title: 'V termínu jarních prázdnin Prahy 8',
     date: '17.2.2025',
     content: (
