@@ -70,7 +70,7 @@ const Newhomepage = () => {
     `${process.env.PUBLIC_URL}/kurt2.jpg`,
     `${process.env.PUBLIC_URL}/kurt1.jpg`,
     `${process.env.PUBLIC_URL}/letnisezonaimage.jpg`,
-    `${process.env.PUBLIC_URL}/kurty4zima.png`,
+    `${process.env.PUBLIC_URL}/kurt4antuka.jpg`,
   ];
 
   const winterImages = [
