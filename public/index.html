@@ -5,13 +5,35 @@
     <link rel="icon" href="%PUBLIC_URL%/logocimice.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Tenis Čimice – tenisová škola, tréninky a tenisové služby." />
+
+    <!-- SEO META -->
+    <title>Tenisová škola Čimice – Praha 8</title>
+    <meta name="description" content="Oficiální stránky Tenisové školy Čimice – nabídka tréninků, kempů, ceník, novinky a kontakt." />
+    <meta name="keywords" content="tenis Čimice, tenis Praha 8, tenisová škola, tenisový trénink, tenisové kurty" />
+    <meta name="author" content="Tenisová škola Čimice" />
+
+    <!-- Open Graph META -->
+    <meta property="og:title" content="Tenisová škola Čimice – Praha 8" />
+    <meta property="og:description" content="Tréninky, kempy, kurzy a tenis v srdci Čimic. Přidej se!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.teniscimice.cz/" />
+    <meta property="og:image" content="https://teniscimice.netlify.app/images/og-cover.jpg" />
+
+    <!-- Apple & PWA -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logocimice.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Tenis Čimice</title>
   </head>
   <body>
-    <noscript>Pro spuštění této aplikace musíte mít povolený JavaScript.</noscript>
+    <noscript>
+      <style>
+        #root { display: none; }
+      </style>
+      <div style="padding: 2rem; font-family: sans-serif; text-align: center;">
+        Tento web vyžaduje JavaScript. Povolte jej ve vašem prohlížeči nebo nás kontaktujte na
+        <a href="mailto:kptenis@volny.cz">kptenis@volny.cz</a>.
+      </div>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
+
