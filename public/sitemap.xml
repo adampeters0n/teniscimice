@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Hlavní stránka -->
+  <url>
+    <loc>https://www.teniscimice.cz/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://teniscimice.cz/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Ceník -->
+  <url>
+    <loc>https://www.teniscimice.cz/cenik</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teniscimice.cz/cenik</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Aktuality -->
+  <url>
+    <loc>https://www.teniscimice.cz/aktuality</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teniscimice.cz/aktuality</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Kempy -->
+  <url>
+    <loc>https://www.teniscimice.cz/kempy</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teniscimice.cz/kempy</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Kontakt -->
+  <url>
+    <loc>https://www.teniscimice.cz/kontakt</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://teniscimice.cz/kontakt</loc>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
