@@ -201,26 +201,9 @@ const Kempytenis = () => {
             Připojte se k našim letním akcím a užijte si nezapomenutelné chvíle plné sportu a zábavy!
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <KempSection
-              title="Malá Skála"
-              date="14. 7. - 20. 7. 2024"
-              description={malaSkalaPopis}
-              images={images}
-            />
-            <KempSection
-              title="Příměstské kempy v Čimicích"
-              date="21. 7. - 29. 8. 2025"
-              description={primestskePopis}
-              images={cimiceImages}
-            />
-          </div>
 
-          {/* Přidání mezery pod sekcemi */}
-          <div className="mt-12"></div>
-
-          {/* Kemp Info Price and Dates */}
-<div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
+ {/* Kemp Info Price and Dates */}
+ <div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
   <h2 className="text-2xl font-semibold text-red-600">Termíny a přihláška na kempy pro rok 2025</h2>
 
   <ul className="list-inside text-lg mt-4 text-gray-700 space-y-4">
@@ -270,9 +253,28 @@ const Kempytenis = () => {
     Zobrazit a vytisknout přihlášku (PDF)
   </a>
 </div>
+
+          {/* Přidání mezery pod sekcemi */}
+          <div className="mt-12"></div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <KempSection
+              title="Malá Skála"
+              date="13. 7. - 18. 7. 2025"
+              description={malaSkalaPopis}
+              images={images}
+            />
+            <KempSection
+              title="Příměstské kempy v Čimicích"
+              date="21. 7. - 29. 8. 2025"
+              description={primestskePopis}
+              images={cimiceImages}
+            />
+          </div>
+
+          
+
 </div>
-{/* Přidání mezery pod sekcemi */}
-<div className="mt-12"></div>
             
           {/* Kemp Info Section */}
           <div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
