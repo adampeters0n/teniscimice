@@ -210,7 +210,7 @@ const Kempytenis = () => {
             />
             <KempSection
               title="Příměstské kempy v Čimicích"
-              date="22. 7. - 31. 8. 2024"
+              date="21. 7. - 29. 8. 2025"
               description={primestskePopis}
               images={cimiceImages}
             />
@@ -219,6 +219,61 @@ const Kempytenis = () => {
           {/* Přidání mezery pod sekcemi */}
           <div className="mt-12"></div>
 
+          {/* Kemp Info Price and Dates */}
+<div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
+  <h2 className="text-2xl font-semibold text-red-600">Termíny a přihláška na kempy pro rok 2025</h2>
+
+  <ul className="list-inside text-lg mt-4 text-gray-700 space-y-4">
+  <li>
+    <h3 className="text-xl font-bold text-red-600">Malá Skála</h3>
+    <p><strong>Soustředění</strong> – 13. – 18. 7.</p>
+    <p><strong>Cena: 6.600 Kč</strong></p>
+  </li>
+  <li>
+    <h3 className="text-xl font-bold text-red-600">Čimice</h3>
+    <p><strong>1. Kemp</strong> – 21. – 5. 7.</p>
+    <p><strong>2. Kemp</strong> – 28. 7. – 1. 8.</p>
+    <p><strong>3. Kemp</strong> – 18. – 22. 8.</p>
+    <p><strong>4. Kemp</strong> – 25. – 29. 8.</p>
+    <p><strong>Cena za jeden: 3.490 Kč</strong></p>
+  </li>
+</ul>
+
+<h3 className="text-xl font-semibold mt-6 text-red-600">Přihláška a platba:</h3>
+<p className="text-lg mt-2 text-gray-700">
+  Závaznou přihlášku odevzdejte do <strong>30. 6. 2025</strong> se zálohou:
+</p>
+<ul className="list-disc list-inside text-lg mt-2 text-gray-700">
+  <li>2.000 Kč pro soustředění v Malé Skále (doplatek do 1. 7.)</li>
+  <li>1.000 Kč pro příměstské kempy v Čimicích (doplatek v hotovosti první den)</li>
+</ul>
+
+<p className="text-lg mt-2 text-gray-700">
+  Platbu proveďte převodem na účet <strong>2102303853/2700</strong> nebo v hotovosti v pondělí při zahájení kempu.
+</p>
+
+<p className="text-lg mt-2 text-gray-700 font-medium">
+  Při účasti na dvou a více turnusech příměstských kempů poskytujeme <strong>slevu 10 %</strong>.
+</p>
+
+<p className="text-lg mt-4 text-gray-700">
+  Vyplněnou přihlášku pošlete e-mailem na <strong>kptenis@volny.cz</strong> nebo vyfocenou přes WhatsApp/SMS na číslo <strong>+420 724 265 022</strong>.
+</p>
+
+<div className="mt-6">
+  <a
+    href="/prihlaska-kemp-2025.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-orange-600 transition"
+  >
+    Zobrazit a vytisknout přihlášku (PDF)
+  </a>
+</div>
+</div>
+{/* Přidání mezery pod sekcemi */}
+<div className="mt-12"></div>
+            
           {/* Kemp Info Section */}
           <div className="bg-gray-50 p-6 rounded-lg border-t-4 border-orange-500">
             <h2 className="text-2xl font-semibold text-red-600">Informace o příměstském kempu</h2>
