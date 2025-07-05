@@ -224,7 +224,7 @@ const Kempytenis = () => {
 
 <h3 className="text-xl font-semibold mt-6 text-red-600">Přihláška a platba:</h3>
 <p className="text-lg mt-2 text-gray-700">
-  <strong>Závaznou přihlášku odevzdejte do se zálohou:</strong>
+  <strong>Závaznou přihlášku odevzdejte se zálohou:</strong>
 </p>
 <ul className="list-disc list-inside text-lg mt-2 text-gray-700">
   <li>2.000 Kč pro soustředění v Malé Skále (doplatek do 1. 7.)</li>
