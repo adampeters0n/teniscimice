@@ -214,7 +214,7 @@ const Kempytenis = () => {
   </li>
   <li>
     <h3 className="text-xl font-bold text-red-600">Čimice</h3>
-    <p><strong>1. Kemp</strong> – 21. – 5. 7.</p>
+    <p><strong>1. Kemp</strong> – 21. 7. – 5. 8.</p>
     <p><strong>2. Kemp</strong> – 28. 7. – 1. 8.</p>
     <p><strong>3. Kemp</strong> – 18. – 22. 8.</p>
     <p><strong>4. Kemp</strong> – 25. – 29. 8.</p>
@@ -224,7 +224,7 @@ const Kempytenis = () => {
 
 <h3 className="text-xl font-semibold mt-6 text-red-600">Přihláška a platba:</h3>
 <p className="text-lg mt-2 text-gray-700">
-  Závaznou přihlášku odevzdejte do <strong>30. 6. 2025</strong> se zálohou:
+  <strong>Závaznou přihlášku odevzdejte do se zálohou:</strong>
 </p>
 <ul className="list-disc list-inside text-lg mt-2 text-gray-700">
   <li>2.000 Kč pro soustředění v Malé Skále (doplatek do 1. 7.)</li>
@@ -327,7 +327,7 @@ const Kempytenis = () => {
                   href="mailto:kptennis@volny.cz"
                   className="text-gray-400 hover:text-white"
                 >
-                  kptennis@volny.cz
+                  kptenis@volny.cz
                 </a>
               </li>
               <li className="flex items-center">

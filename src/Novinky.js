@@ -805,7 +805,7 @@ const newsItems = [
             href="mailto:kptennis@volny.cz"
             className="text-gray-400 hover:text-white"
           >
-            kptennis@volny.cz
+            kptenis@volny.cz
           </a>
         </li>
         <li className="flex items-center">
