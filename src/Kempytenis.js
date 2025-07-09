@@ -214,7 +214,7 @@ const Kempytenis = () => {
   </li>
   <li>
     <h3 className="text-xl font-bold text-red-600">Čimice</h3>
-    <p><strong>1. Kemp</strong> – 21. 7. – 5. 8.</p>
+    <p><strong>1. Kemp</strong> – 21. 7. – 25. 7.</p>
     <p><strong>2. Kemp</strong> – 28. 7. – 1. 8.</p>
     <p><strong>3. Kemp</strong> – 18. – 22. 8.</p>
     <p><strong>4. Kemp</strong> – 25. – 29. 8.</p>
