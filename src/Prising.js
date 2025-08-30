@@ -188,11 +188,11 @@ const Prising = () => {
     <h2 className="text-4xl font-bold mt-16 mb-8 text-center text-gray-800">Zimní sezona 2024/2025</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[
-        { name: 'Jeden hráč + trenér', price: '790 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
-        { name: 'Dva hráči + trenér', price: '410 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
-        { name: 'Tři hráči + trenér', price: '330 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
-        { name: 'Čtyři hráči + trenér', price: '250 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
-        { name: '5 a více hráčů + trenér', price: '220 Kč / 1h', description: 'Skupinový trénink s trenérem.' }
+        { name: 'Jeden hráč + trenér', price: '820 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
+        { name: 'Dva hráči + trenér', price: '450 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
+        { name: 'Tři hráči + trenér', price: '350 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
+        { name: 'Čtyři hráči + trenér', price: '270 Kč / 1h', description: 'Tréninková lekce s trenérem.' },
+        { name: '5 a více hráčů + trenér', price: '230 Kč / 1h', description: 'Skupinový trénink s trenérem.' }
       ].map((service) => (
         <div key={service.name} className="border-2 border-gray-300 rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100 hover:border-orange-400 transition-all">
           <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.name}</h3>
