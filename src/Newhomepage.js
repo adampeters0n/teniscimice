@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   Mail,
   Phone,
@@ -144,9 +144,16 @@ const PhotoGallery = ({ images = [] }) => {
 
   const openAt = (i) => { setIdx(i); setOpen(true); };
   const close  = () => setOpen(false);
-  const prev   = (e) => { e?.stopPropagation?.(); setIdx((p) => (p - 1 + images.length) % images.length); };
-  const next   = (e) => { e?.stopPropagation?.(); setIdx((p) => (p + 1) % images.length); };
-
+  const prev = useCallback((e) => {
+    e?.stopPropagation?.();
+    setIdx((p) => (p - 1 + images.length) % images.length);
+  }, [images.length]);
+  
+  const next = useCallback((e) => {
+    e?.stopPropagation?.();
+    setIdx((p) => (p + 1) % images.length);
+  }, [images.length]);
+  
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -156,7 +163,8 @@ const PhotoGallery = ({ images = [] }) => {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, images.length]);
+  }, [open, prev, next, close]);  // ✅ teď bez warningu
+
 
   if (!images.length) return null;
 
@@ -299,7 +307,8 @@ const Newhomepage = () => {
   useEffect(() => {
     const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 6000);
     return () => clearInterval(id);
-  }, []);
+  }, [heroImages.length]);
+  
 
 
 
