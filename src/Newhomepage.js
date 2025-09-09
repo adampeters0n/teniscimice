@@ -142,8 +142,13 @@ const PhotoGallery = ({ images = [] }) => {
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
 
-  const openAt = (i) => { setIdx(i); setOpen(true); };
-  const close  = () => setOpen(false);
+  const openAt = (i) => {
+    setIdx(i);
+    setOpen(true);
+  };
+
+  // ✅ všechny tři funkce stabilní
+  const close = useCallback(() => setOpen(false), []);
   const prev = useCallback((e) => {
     e?.stopPropagation?.();
     setIdx((p) => (p - 1 + images.length) % images.length);
@@ -163,8 +168,7 @@ const PhotoGallery = ({ images = [] }) => {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, prev, next, close]);  // ✅ teď bez warningu
-
+  }, [open, prev, next, close]);  // ✅ teď všechny funkce stabilní
 
   if (!images.length) return null;
 
@@ -254,6 +258,7 @@ const PhotoGallery = ({ images = [] }) => {
     </>
   );
 };
+
 
 /* ---------- Reveal wrapper for sections ---------- */
 const RevealSection = ({ className = '', children }) => {
