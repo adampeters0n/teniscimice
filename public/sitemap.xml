@@ -3,11 +3,11 @@
 
   <!-- Hlavní stránka -->
   <url>
-    <loc>https://www.teniscimice.cz/</loc>
+    <loc>https://www.teniscimice.cz</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://teniscimice.cz/</loc>
+    <loc>https://teniscimice.cz</loc>
     <priority>1.0</priority>
   </url>
 

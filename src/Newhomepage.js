@@ -1010,7 +1010,7 @@ const Newhomepage = () => {
               </div>
               <h2 className="mt-2 text-2xl font-extrabold text-gray-900">Momentky z kurtů</h2>
               <p className="text-gray-700">
-                Tréninky, kempy i turnaje – energie, která k nám patří.
+                Tréninky, kempy i turnaje. Energie, která k nám patří.
               </p>
             </header>
 
