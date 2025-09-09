@@ -306,11 +306,11 @@ const Nasekurzy = () => {
                 <h2 className="text-2xl font-extrabold text-gray-900 text-center mb-6 ">Letní sezona 2025 – tréninky</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
                   {[
-                    { name: 'Jeden hráč + trenér', price: '590 Kč / 1h', description: 'Individuální lekce s trenérem.' },
-                    { name: 'Dva hráči + trenér', price: '320 Kč / 1h', description: 'Sdílená intenzivní hodina.' },
-                    { name: 'Tři hráči + trenér', price: '240 Kč / 1h', description: 'Výborné tempo a pestrost.' },
-                    { name: 'Čtyři hráči + trenér', price: '190 Kč / 1h', description: 'Skupinová lekce, hodně hry.' },
-                    { name: 'Skupina více hráčů', price: '170 Kč / 1h', description: 'Ekonomická varianta pro větší skupinu.' },
+                    { name: 'Jeden hráč + trenér', price: '620 Kč / 1h', description: 'Individuální lekce s trenérem.' },
+                    { name: 'Dva hráči + trenér', price: '350 Kč / 1h', description: 'Sdílená intenzivní hodina.' },
+                    { name: 'Tři hráči + trenér', price: '260 Kč / 1h', description: 'Výborné tempo a pestrost.' },
+                    { name: 'Čtyři hráči + trenér', price: '200 Kč / 1h', description: 'Skupinová lekce, hodně hry.' },
+                    { name: 'Skupina více hráčů', price: '190 Kč / 1h', description: 'Zábavná varianta s větší skupinou.' },
                   ].map((s) => (
                     <Card
                       key={s.name}

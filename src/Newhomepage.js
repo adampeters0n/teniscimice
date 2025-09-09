@@ -174,15 +174,10 @@ const PhotoGallery = ({ images = [] }) => {
 
   const widthPattern = [
     'col-span-2',
-    'col-span-3',
     'col-span-2',
     'col-span-2',
     'col-span-3',
     'col-span-3',
-    'col-span-2',
-    'col-span-2',
-    'col-span-3',
-    'col-span-2',
   ];
 
   return (
@@ -554,10 +549,10 @@ const Newhomepage = () => {
       Tenis Čimice
     </span>
     <h2 className="mt-2 text-2xl font-extrabold tracking-wide text-orange-700">
-      Pohodlné hraní pro všechny
+      Hrajeme v&nbsp;Čimicích po celý rok
     </h2>
     <p className="mt-1 text-gray-700">
-      Kurty, kempy a tréninky — pro děti i dospělé po celý rok.
+    Přijďte si zahrát nebo potrénovat kdykoli v roce
     </p>
   </RevealSection>
 
