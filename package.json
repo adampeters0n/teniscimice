@@ -17,6 +17,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "img:optimize": "node scripts/optimize-images.mjs",
+    "prebuild": "npm run img:optimize",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
@@ -41,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "fast-glob": "^3.3.3",
+    "sharp": "^0.34.3"
   }
 }

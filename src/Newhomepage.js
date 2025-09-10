@@ -14,6 +14,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Picture from './components/Picture';
 
 
 /* ---------- Hooks / utility ---------- */
@@ -49,72 +50,183 @@ const useScrollY = () => {
   return y;
 };
 
-const ImageCarousel = ({ images = [], className = '' }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+// --- NOVÝ ImageCarousel se smooth cross-fade ---
+// používá tvůj <Picture />, takže se dál servíruje AVIF/WebP a lazy-loading
 
+// --- ImageCarousel: autoplay běží pořád (requestAnimationFrame), smooth cross-fade ---
+const ImageCarousel = ({
+  images = [],
+  className = "",
+  height = 420,
+  intervalMs = 3500,
+  showArrows = true,
+  showDots = true,
+}) => {
+  const [index, setIndex] = useState(0);
+  const [front, setFront] = useState(0); // 0/1 která vrstva je vidět
+  const [srcA, setSrcA] = useState(images[0] || "");
+  const [srcB, setSrcB] = useState(images[1] || images[0] || "");
+  const prevImagesRef = useRef([]);
+
+  // --- preload dalšího obrázku (AVIF 800 px)
+  const preloadBase = (base) => {
+    if (!base) return;
+    const rel = base.replace(`${process.env.PUBLIC_URL}/`, "");
+    const img = new Image();
+    img.src = `${process.env.PUBLIC_URL}/optimized/${rel}-800.avif`;
+  };
+
+  // --- zobraz konkrétní index s cross-fade
+  const show = useCallback((nextIndex) => {
+    if (!images.length) return;
+    const nextBase = images[nextIndex];
+    if (front === 0) setSrcB(nextBase);
+    else setSrcA(nextBase);
+
+    const after = (nextIndex + 1) % images.length;
+    preloadBase(images[after]);
+
+    requestAnimationFrame(() => setFront((f) => 1 - f));
+    setIndex(nextIndex);
+  }, [front, images]);
+
+  // --- next/prev (nepoužíváme je v autoplayu přímo kvůli stabilitě refu)
+  const prevSlide = useCallback(() => {
+    if (images.length < 2) return;
+    show((index - 1 + images.length) % images.length);
+  }, [images.length, index, show]);
+
+  const nextSlide = useCallback(() => {
+    if (images.length < 2) return;
+    show((index + 1) % images.length);
+  }, [images.length, index, show]);
+
+  // --- ref na nextSlide, aby rAF neměl závislosti a nerozpínal/nezastavoval během scrollu
+  const nextSlideRef = useRef(() => {});
   useEffect(() => {
-    if (paused || images.length < 2) return;
-    const id = setInterval(
-      () => setCurrentIndex((p) => (p + 1) % images.length),
-      3500
-    );
-    return () => clearInterval(id);
-  }, [paused, images.length]);
+    nextSlideRef.current = () => {
+      if (images.length < 2) return;
+      show((index + 1) % images.length);
+    };
+  }, [images.length, index, show]);
 
-  const nextSlide = () =>
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  const prevSlide = () =>
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  // --- AUTOPLAY přes requestAnimationFrame (místo setInterval)
+  useEffect(() => {
+    if (images.length < 2) return;
+
+    let rafId;
+    let last = performance.now();
+    let acc = 0;
+
+    const tick = (t) => {
+      const dt = t - last;
+      last = t;
+
+      // pokud je tab skrytý, některé prohlížeče stejně framey pauznou – neřešíme
+      acc += dt;
+      if (acc >= intervalMs) {
+        nextSlideRef.current();
+        acc = acc % intervalMs;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [intervalMs, images.length]); // žádná závislost na funkcích → rAF běží stabilně
+
+  // --- inicializace / reset jen při reálné změně obsahu pole images
+  useEffect(() => {
+    if (!images.length) return;
+    const prev = prevImagesRef.current;
+    const same = images.length === prev.length && images.every((v, i) => v === prev[i]);
+    if (!same) {
+      setSrcA(images[0]);
+      setSrcB(images[1] || images[0]);
+      setFront(0);
+      setIndex(0);
+      preloadBase(images[1]);
+      prevImagesRef.current = images.slice();
+    }
+  }, [images]);
 
   if (!images.length) return null;
 
   return (
     <div
-      className={`relative ${className}`}
+      className={`relative overflow-hidden ${className}`}
       role="region"
       aria-roledescription="carousel"
       aria-label="Galerie obrázků"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
     >
-      <img
-        src={images[currentIndex]}
-        alt={`Slide ${currentIndex + 1}`}
-        className="rounded-xl w-full h-auto max-h-[420px] object-cover shadow-md transition-transform duration-500"
-        loading="lazy"
-      />
-      <button
-        onClick={prevSlide}
-        aria-label="Předchozí snímek"
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-600/60 hover:bg-orange-600/80 transition text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
-      >
-        <ChevronLeft size={22} />
-      </button>
-      <button
-        onClick={nextSlide}
-        aria-label="Další snímek"
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-600/60 hover:bg-orange-600/80 transition text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
-      >
-        <ChevronRight size={22} />
-      </button>
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`Přejít na snímek ${index + 1}`}
-            className={`h-2 rounded-full transition-all ${
-              index === currentIndex ? 'w-6 bg-red-600' : 'w-2 bg-gray-300'
-            }`}
+      {/* pevná výška kvůli layout shiftu */}
+      <div className="relative" style={{ height }}>
+        {/* VRSTVA A */}
+        <div className={`absolute inset-0 transition-opacity duration-500 will-change-[opacity] ${front === 0 ? "opacity-100" : "opacity-0"}`}>
+          <Picture
+            base={srcA}
+            width={1200}
+            alt={`Slide ${index + 1}`}
+            className="h-full"
+            imgClass="rounded-xl w-full h-full object-cover shadow-md"
+            loading="eager"
           />
-        ))}
+        </div>
+
+        {/* VRSTVA B */}
+        <div className={`absolute inset-0 transition-opacity duration-500 will-change-[opacity] ${front === 1 ? "opacity-100" : "opacity-0"}`}>
+          <Picture
+            base={srcB}
+            width={1200}
+            alt={`Slide ${index + 1}`}
+            className="h-full"
+            imgClass="rounded-xl w-full h-full object-cover shadow-md"
+            loading="lazy"
+          />
+        </div>
       </div>
+
+      {/* Ovládání */}
+      {showArrows && images.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            aria-label="Předchozí snímek"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-600/60 hover:bg-orange-600/80 transition text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            <ChevronLeft size={22} />
+          </button>
+          <button
+            onClick={nextSlide}
+            aria-label="Další snímek"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-600/60 hover:bg-orange-600/80 transition text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            <ChevronRight size={22} />
+          </button>
+        </>
+      )}
+
+      {/* tečky */}
+      {showDots && images.length > 1 && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => show(i)}
+              aria-label={`Přejít na snímek ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${i === index ? "w-6 bg-red-600" : "w-2 bg-gray-300"}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
+
+
+
+
+
 
 /* ---------- FAQ ---------- */
 const FAQItem = ({ q, a }) => {
@@ -198,12 +310,15 @@ const PhotoGallery = ({ images = [] }) => {
               className={`group ${col} h-full overflow-hidden rounded-lg shadow-sm hover:shadow-md transition`}
               aria-label={`Fotka ${i + 1}`}
             >
-              <img
-                src={src}
-                alt={`Galerie ${i + 1}`}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-              />
+              <Picture
+  base={src}
+  width={800}
+  alt={`Galerie ${i + 1}`}
+  className="block h-full"
+  imgClass="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+  loading="lazy"
+/>
+
             </button>
           );
         })}
@@ -217,12 +332,15 @@ const PhotoGallery = ({ images = [] }) => {
           aria-modal="true"
         >
           <div className="relative max-w-6xl w-full">
-            <img
-              src={images[idx]}
-              alt={`Fotografie ${idx + 1}`}
-              className="w-full max-h-[82vh] object-contain rounded-xl shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
+          <Picture
+  base={images[idx]}
+  width={1600}
+  alt={`Fotografie ${idx + 1}`}
+  imgClass="w-full max-h-[82vh] object-contain rounded-xl shadow-2xl"
+  loading="eager"
+  fetchPriority="high"
+/>
+
             <button
               onClick={prev}
               className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-white/25 text-white p-2 rounded-full"
@@ -296,67 +414,65 @@ const Newhomepage = () => {
   const toggleMenu = () => setIsMenuOpen((s) => !s);
 
   // --- HERO carousel (max 4 fotky) ---
-  const heroImages = [
-    `${process.env.PUBLIC_URL}/kurty1zima.jpg`,
-    `${process.env.PUBLIC_URL}/kurty2zima.jpg`,
-    `${process.env.PUBLIC_URL}/kurt4antuka.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek18.jpg`,
-  ];
+const heroImages = [
+  `${process.env.PUBLIC_URL}/kurty1zima`,
+  `${process.env.PUBLIC_URL}/kurty2zima`,
+  `${process.env.PUBLIC_URL}/kurt4antuka`,
+  `${process.env.PUBLIC_URL}/Obrázek18`,
+];
 
-  const [heroIndex, setHeroIndex] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 6000);
-    return () => clearInterval(id);
-  }, [heroImages.length]);
+
+
   
 
+const summerImages = [
+  `${process.env.PUBLIC_URL}/prvnikurt`,
+  `${process.env.PUBLIC_URL}/druhykurt`,
+  `${process.env.PUBLIC_URL}/letnisezonaimage`,
+  `${process.env.PUBLIC_URL}/kurt4antuka`,
+];
+
+const winterImages = [
+  `${process.env.PUBLIC_URL}/kurty1zima`,
+  `${process.env.PUBLIC_URL}/kurty2zima`,
+  `${process.env.PUBLIC_URL}/kurty3zima`,
+  `${process.env.PUBLIC_URL}/kurty4zima`,
+];
 
 
-  const summerImages = [
-    `${process.env.PUBLIC_URL}/prvnikurt.jpg`,
-    `${process.env.PUBLIC_URL}/druhykurt.jpg`,
-    `${process.env.PUBLIC_URL}/letnisezonaimage.jpg`,
-    `${process.env.PUBLIC_URL}/kurt4antuka.jpg`,
-  ];
-  const winterImages = [
-    `${process.env.PUBLIC_URL}/kurty1zima.jpg`,
-    `${process.env.PUBLIC_URL}/kurty2zima.jpg`,
-    `${process.env.PUBLIC_URL}/kurty3zima.jpg`,
-    `${process.env.PUBLIC_URL}/kurty4zima.jpg`,
-  ];
+const galleryImages = [
+  `${process.env.PUBLIC_URL}/Obrázek2`,
+  `${process.env.PUBLIC_URL}/Obrázek3`,
+  `${process.env.PUBLIC_URL}/Obrázek4`,
+  `${process.env.PUBLIC_URL}/Obrázek5`,
+  `${process.env.PUBLIC_URL}/Obrázek6`,
+  `${process.env.PUBLIC_URL}/Obrázek7`,
+  `${process.env.PUBLIC_URL}/Obrázek8`,
+  `${process.env.PUBLIC_URL}/Obrázek9`,
+  `${process.env.PUBLIC_URL}/Obrázek10`,
+  `${process.env.PUBLIC_URL}/Obrázek11`,
+  `${process.env.PUBLIC_URL}/Obrázek12`,
+  `${process.env.PUBLIC_URL}/Obrázek13`,
+  `${process.env.PUBLIC_URL}/Obrázek14`,
+  `${process.env.PUBLIC_URL}/Obrázek15`,
+  `${process.env.PUBLIC_URL}/Obrázek16`,
+  `${process.env.PUBLIC_URL}/Obrázek17`,
+  `${process.env.PUBLIC_URL}/Obrázek18`,
+  `${process.env.PUBLIC_URL}/Obrázek19`,
+  `${process.env.PUBLIC_URL}/Obrázek20`,
+  `${process.env.PUBLIC_URL}/Obrázek21`,
+  `${process.env.PUBLIC_URL}/Obrázek22`,
+  `${process.env.PUBLIC_URL}/Obrázek23`,
+  `${process.env.PUBLIC_URL}/Obrázek24`,
+  `${process.env.PUBLIC_URL}/Obrázek25`,
+  `${process.env.PUBLIC_URL}/Obrázek26`,
+  `${process.env.PUBLIC_URL}/Obrázek27`,
+  `${process.env.PUBLIC_URL}/Obrázek28`,
+  `${process.env.PUBLIC_URL}/Obrázek29`,
+  `${process.env.PUBLIC_URL}/Obrázek30`,
+  `${process.env.PUBLIC_URL}/Obrázek31`,
+];
 
-  const galleryImages = [
-    `${process.env.PUBLIC_URL}/Obrázek2.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek3.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek4.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek5.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek6.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek7.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek8.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek9.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek10.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek11.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek12.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek13.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek14.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek15.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek16.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek17.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek18.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek19.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek20.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek21.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek22.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek23.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek24.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek25.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek26.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek27.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek28.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek29.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek30.jpg`,
-    `${process.env.PUBLIC_URL}/Obrázek31.jpg`,
-  ];
 
   const [refCards, cardsIn] = useInView();
   const [refFacilities, facIn] = useInView();
@@ -371,7 +487,15 @@ const Newhomepage = () => {
         <nav className="max-w-screen-xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/" aria-label="Domů">
-              <img src={`${process.env.PUBLIC_URL}/logocimice.png`} alt="Tenis Čimice Logo" className="h-12 w-12 mr-2" />
+            <Picture
+  base={`${process.env.PUBLIC_URL}/logocimice`} // bez přípony!
+  width={128}
+  alt="Tenis Čimice Logo"
+  imgClass="h-12 w-12 mr-2 object-contain"
+  loading="eager"
+  fetchPriority="high"
+/>
+
             </Link>
             <div className="ml-2 flex flex-col items-center">
               <a
@@ -464,11 +588,14 @@ const Newhomepage = () => {
                   <h1 className="text-[30px] sm:text-[34px] font-extrabold tracking-tight text-orange-700">
                     Zahrajte si u nás v&nbsp;Čimicích
                   </h1>
-                  <img
-                    src="/logocimice.png"
-                    alt="Tenisová škola Čimice – logo"
-                    className="h-12 w-12 object-contain"
-                  />
+                  <Picture
+  base={`${process.env.PUBLIC_URL}/logocimice`} // bez .png
+  width={96}
+  alt="Tenisová škola Čimice – logo"
+  imgClass="h-12 w-12 object-contain"
+  loading="lazy"
+/>
+
                 </div>
                 <div className="mt-1.5 h-[3px] w-32 rounded-full bg-[linear-gradient(90deg,#16a34a,#fbbf24,#f97316)]" />
 
@@ -559,28 +686,18 @@ const Newhomepage = () => {
   <RevealSection className="relative bg-white rounded-3xl border border-gray-200 shadow-lg overflow-hidden flex-1">
     <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#16a34a,#fbbf24,#f97316)] rounded-t-3xl" />
     <div className="relative">
-      <img
-        src={heroImages[heroIndex]}
-        alt={`Hero ${heroIndex + 1}`}
-        className="w-full h-[560px] object-cover"
-        loading="eager"
-      />
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-        {heroImages.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setHeroIndex(i)}
-            aria-label={`Snímek ${i + 1}`}
-            className={`h-2 rounded-full transition-all ${
-              i === heroIndex ? 'w-6 bg-orange-600' : 'w-2 bg-white/80'
-            }`}
-          />
-        ))}
-      </div>
-      <span className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-orange-700 shadow">
-        Tenis u nás
-      </span>
-    </div>
+  <ImageCarousel
+    images={heroImages}
+    height={560}
+    intervalMs={6000}
+    showArrows={false}  // v hero nechceme šipky
+    showDots={true}     // tečky necháme
+  />
+  <span className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-orange-700 shadow">
+    Tenis u nás
+  </span>
+</div>
+
   </RevealSection>
 </div>
 
@@ -843,7 +960,8 @@ const Newhomepage = () => {
                   </li>
                 </ul>
 
-                <ImageCarousel images={summerImages} />
+                <ImageCarousel images={summerImages} height={300} intervalMs={3500} />
+
 
                 <div className="mt-5 flex justify-between items-center">
                   <div className="flex flex-wrap gap-2">
@@ -885,7 +1003,7 @@ const Newhomepage = () => {
                   </li>
                 </ul>
 
-                <ImageCarousel images={winterImages} />
+                <ImageCarousel images={winterImages} height={300} intervalMs={3500} />
 
                 <div className="mt-5 flex justify-between items-center">
                   <div className="flex flex-wrap gap-2">
@@ -961,11 +1079,14 @@ const Newhomepage = () => {
                 </div>
 
                 <div className="lg:col-span-2 relative">
-                  <img
-                    src={`${process.env.PUBLIC_URL}/fotkatreneri.jpg`}
-                    alt="Trenérský tým"
-                    className="rounded-xl w-full shadow-md object-cover transition-transform duration-700 hover:scale-[1.015]"
-                  />
+                <Picture
+  base={`${process.env.PUBLIC_URL}/fotkatreneri`}
+  width={1200}
+  alt="Trenérský tým"
+  imgClass="rounded-xl w-full shadow-md object-cover transition-transform duration-700 hover:scale-[1.015]"
+  loading="lazy"
+/>
+
                   <span className="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-white/85 text-blue-700 shadow">
                     Trenéři s praxí
                   </span>
